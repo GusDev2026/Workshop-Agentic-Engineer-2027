@@ -56,8 +56,10 @@ All these files reference the same core rules in `docs/base-standards.md`, ensur
 Open your coding agent in your project root and say:
 
 ```text
-Please read and follow the instructions in this file to set up LIDR's spec-driven development workflow in my project: /Users/alvaromoya/Downloads/setup-sdd (1).md
+Please read and follow the instructions in this file to set up LIDR's spec-driven development workflow in my project: setup-sdd.md
 ```
+
+`setup-sdd.md` is the file at the root of this repository.
 
 The agent will:
 
@@ -65,8 +67,6 @@ The agent will:
 - Import this repository's `docs/` and `ai-specs/`
 - Update your OpenSpec config context (`config.yml` or `openspec/config.yaml`)
 - Store these onboarding instructions as `ai-specs/specboot-instructions.md` (so your project README can remain yours)
-
-The same instructions are kept in `setup-sdd.md` at the repository root. The prompt above uses the local file.
 
 ### 1) Install and Initialize OpenSpec
 
