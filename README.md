@@ -51,6 +51,23 @@ All these files reference the same core rules in `docs/base-standards.md`, ensur
 
 ## 🚀 Quick Start
 
+### Recommended: Automated Setup
+
+Open your coding agent in your project root and say:
+
+```text
+Please read and follow the instructions in this file to set up LIDR's spec-driven development workflow in my project: /Users/alvaromoya/Downloads/setup-sdd (1).md
+```
+
+The agent will:
+
+- Install and initialize OpenSpec (if needed)
+- Import this repository's `docs/` and `ai-specs/`
+- Update your OpenSpec config context (`config.yml` or `openspec/config.yaml`)
+- Store these onboarding instructions as `ai-specs/specboot-instructions.md` (so your project README can remain yours)
+
+The same instructions are kept in `setup-sdd.md` at the repository root. The prompt above uses the local file.
+
 ### 1) Install and Initialize OpenSpec
 
 OpenSpec works great with this repository and is recommended for a spec-driven workflow.
@@ -223,7 +240,7 @@ Skills live in `ai-specs/skills/` and are mirrored into `.claude/skills/` and `.
 - **`writing-skills`** — Author and verify new skills (or refactor existing ones) following TDD-style validation before deployment. Use when adding a skill to `ai-specs/skills/` or editing an existing `SKILL.md`.
 - **`code-auditing`** — Run a systematic 6-phase code quality audit covering security, performance, type safety, dead code, and library best practices, ending with a prioritized action plan. Use for pre-release reviews, technical-debt sweeps, and dependency audits.
 
-Other active skills in this repository: `commit`, `explain`, `meta-prompt`, `update-docs`. See each `ai-specs/skills/<name>/SKILL.md` for the full instructions.
+Other active skills in this repository: `adversarial-review`, `commit`, `explain`, `factory`, `meta-prompt`, `mutation-testing`, `openspec-sync-specs`, `playwright-qa-scenarios`, `playwright-skill`, `quick-change`, `show-spec-working`, `sync-agent-symlinks`, `update-docs`. See each `ai-specs/skills/<name>/SKILL.md` for the full instructions.
 
 ## 📖 Core Development Rules
 
