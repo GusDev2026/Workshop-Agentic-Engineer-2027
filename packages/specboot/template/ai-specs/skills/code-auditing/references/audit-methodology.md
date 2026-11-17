@@ -248,6 +248,14 @@ For custom implementations, find mature replacements:
 
 ## Phase 6: Report Generation
 
+### Report Output Location
+
+- Write the completed report to the project's `tmp/` directory. Create `tmp/` if it does not exist.
+- The filename MUST start with the local date in `YYYY-MM-DD` format, followed by a hyphen and a short slug.
+- Required pattern: `tmp/YYYY-MM-DD-<slug>.md`
+- Example: `tmp/2026-11-16-code-audit.md`
+- Do not save the report at the project root.
+
 ### Report Structure
 
 #### Executive Summary (2-3 paragraphs)

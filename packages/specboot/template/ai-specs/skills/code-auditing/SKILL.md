@@ -73,6 +73,13 @@ Generate detailed report with:
 - Effort estimates
 - Library recommendations
 
+**Report output (required):**
+- Save the report under the project's `tmp/` directory (create `tmp/` if missing).
+- Filename MUST start with the local date as `YYYY-MM-DD`, then a hyphen, then a short slug.
+- Pattern: `tmp/YYYY-MM-DD-<slug>.md`
+- Example: `tmp/2026-11-16-code-audit.md`
+- Do NOT save the report at the project root, in `docs/`, or as the only copy in chat artifacts.
+
 ## Issue Priority Levels
 
 - **Critical** - Security vulnerabilities, broken functionality
@@ -151,5 +158,5 @@ See the reference documents for complete methodologies:
 ### After Audit
 - [ ] Categorize all findings by priority
 - [ ] Generate comprehensive report
-- [ ] Save report to project root
-- [ ] Provide brief console summary
+- [ ] Save report to `tmp/YYYY-MM-DD-<slug>.md` (date prefix required)
+- [ ] Provide brief console summary with the saved path

@@ -34,6 +34,7 @@ Borrowed from common red-team / adversarial practice:
 - **Trace cross-boundary and composition risks**: pieces that look fine in isolation but fail together (multi-file, API plus UI, retries plus side effects).
 - **Treat the diff as incomplete context**: missing tests, missing negative paths, or spec drift can hide issues.
 - **Calibrate depth** to risk: auth, payments, PII, privilege boundaries, and data mutation deserve stricter scrutiny.
+- **Line coverage is not proof of detection**: tests can execute code and still miss meaningful bugs; mutation-style analysis asks whether a small code change would fail the suite.
 
 ## Workflow
 
@@ -57,7 +58,9 @@ For each acceptance criterion or scenario:
 1. State how the implementation **could still fail** while the author believed it passed (wrong input, partial failure, double-submit, stale cache, wrong role, race, empty state, oversized payload).
 2. Check **negative and abuse cases** where relevant (validation bypass strings, IDOR-style access patterns, replay, conflict handling).
 3. Check **tests and verification artifacts**: do they **prove** the criterion, or only the happy path?
-4. Record **spec vs code mismatches** (spec says X, code does Y) as first-class findings.
+4. **Mutation / test-effectiveness (required when production code changed)**: load and follow the `mutation-testing` skill. Run branch-scoped analysis on changed production files (`git diff main...HEAD`, excluding tests/fixtures). Survivors that show real detection gaps (business logic, auth, error paths, weak assertions) become findings; equivalent or log-only mutants stay Minor/Question or documented acceptance. Skip only when the branch has no production logic changes.
+5. **Independently re-run cited evidence**: for every test, lint, or security-scan command the implementer's report cites a result for, re-run that command yourself rather than trusting the reported numbers. A cited result you did not reproduce is not evidence — treat an unreproduced or mismatched result as a finding.
+6. Record **spec vs code mismatches** (spec says X, code does Y) as first-class findings.
 
 ### Step 4 — Severity and recommendations
 
@@ -96,6 +99,13 @@ Use this structure in chat:
 | Severity | Area | Finding | Evidence | Suggested fix (code / spec / tests) |
 |----------|------|---------|----------|--------------------------------------|
 | Blocker / Major / Minor | | | | |
+
+Include mutation survivors here with Area `tests/mutation` (or similar). Optionally attach or link `openspec/changes/<change>/reports/YYYY-MM-DD-mutation-analysis.md` when written during apply verification.
+
+### Mutation analysis (optional subsection)
+- Subjects analyzed: ...
+- Top survivors / no-coverage gaps: ...
+- Equivalents accepted: ...
 
 ### Verdict
 PASS | PASS WITH GAPS | FAIL
